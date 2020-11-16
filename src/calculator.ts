@@ -10,6 +10,15 @@ export class Calculator {
     }
 
     private splitToNumberArray(numberString: string): number[] {
-        return numberString.split(/,|\n/).map(n => +n);
+        let delim = ",|\n";
+        if (this.customDelim(numberString)) {
+            [delim, numberString] = numberString.split("\n");
+            delim = delim.substr(2, 3);
+        }
+        return numberString.split(new RegExp(delim)).map(n => +n);
+    }
+
+    private customDelim(numberString: string): boolean {
+        return numberString.startsWith("//");
     }
 }
