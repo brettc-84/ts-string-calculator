@@ -7,7 +7,7 @@ export class Calculator {
         } else {
             const numberArray = this.splitToNumberArray(numbers);
             this.validateForNegativeNumbers(numberArray);
-            return numberArray.reduce((i,k) => i+k);
+            return numberArray.reduce((i,k) => i + k);
         }
     }
 
@@ -17,7 +17,7 @@ export class Calculator {
             [delim, numberString] = numberString.split("\n");
             delim = delim.substr(2, 3);
         }
-        return numberString.split(new RegExp(delim)).map(n => +n);
+        return numberString.split(new RegExp(delim)).map(n => +n).filter(n => n < 1000);
     }
 
     private customDelim(numberString: string): boolean {
