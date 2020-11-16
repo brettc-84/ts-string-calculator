@@ -16,5 +16,11 @@ describe('String calculator', () => {
         it('should return 3 for string 1,2', () => {
             expect(calc.add("1,2")).equal(3);
         });
+        it('should return 6 for 1,2,3', () => {
+            expect(calc.add("1,2,3")).equal(6);
+        });
+        it('should return 6 for numbers split by newline 1\n2,3', () => {
+            expect(calc.add("1\n2,3")).equals(6);
+        });
     })
 });

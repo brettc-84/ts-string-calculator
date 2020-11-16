@@ -10,6 +10,6 @@ export class Calculator {
     }
 
     private splitToNumberArray(numberString: string): number[] {
-        return numberString.split(",").map(n => +n);
+        return numberString.split(/,|\n/).map(n => +n);
     }
 }
