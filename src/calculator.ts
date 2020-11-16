@@ -5,7 +5,9 @@ export class Calculator {
         if (numbers.length === 0) {
             return 0;
         } else {
-            return this.splitToNumberArray(numbers).reduce((i,k) => i+k);
+            const numberArray = this.splitToNumberArray(numbers);
+            this.validateForNegativeNumbers(numberArray);
+            return numberArray.reduce((i,k) => i+k);
         }
     }
 
@@ -20,5 +22,12 @@ export class Calculator {
 
     private customDelim(numberString: string): boolean {
         return numberString.startsWith("//");
+    }
+
+    private validateForNegativeNumbers(numberArr: number[]): void {
+        const negativeNumbers = numberArr.filter(n => n < 0);
+        if (negativeNumbers.length > 0) {
+            throw "negatives not allowed: "+ negativeNumbers.join(",");
+        }
     }
 }
