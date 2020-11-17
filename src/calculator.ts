@@ -15,13 +15,24 @@ export class Calculator {
         let delim = ",|\n";
         if (this.customDelim(numberString)) {
             [delim, numberString] = numberString.split("\n");
-            delim = delim.substr(2, 3);
+            delim = this.extractDelim(delim);
         }
         return numberString.split(new RegExp(delim)).map(n => +n).filter(n => n < 1000);
     }
 
     private customDelim(numberString: string): boolean {
         return numberString.startsWith("//");
+    }
+
+    private escapeRegex(regStr: string): string {
+        return regStr.replace(/[\-\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+    }
+
+    private extractDelim(delimStr: string): string {
+        if (delimStr.startsWith("//[")) {
+            return this.escapeRegex(delimStr.substr(3, delimStr.length-4));
+        }
+        return delimStr.substr(2,3);
     }
 
     private validateForNegativeNumbers(numberArr: number[]): void {

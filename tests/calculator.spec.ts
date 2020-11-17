@@ -29,6 +29,9 @@ describe('String calculator', () => {
         });
         it('should ignore numbers larger than 1000', () => {
             expect(calc.add("1,2,1003")).toEqual(3);
+        });
+        it('should work with any length delimiter', () => {
+            expect(calc.add("//[***]\n1***2***3")).toEqual(6);
         })
     })
 });
