@@ -30,7 +30,7 @@ export class Calculator {
 
     private extractDelim(delimStr: string): string {
         if (delimStr.startsWith("//[")) {
-            return this.escapeRegex(delimStr.substr(3, delimStr.length-4));
+            return this.escapeRegex(delimStr.substr(3, delimStr.length-4)).replace("][", "|");
         }
         return delimStr.substr(2,3);
     }

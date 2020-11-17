@@ -32,6 +32,9 @@ describe('String calculator', () => {
         });
         it('should work with any length delimiter', () => {
             expect(calc.add("//[***]\n1***2***3")).toEqual(6);
-        })
+        });
+        it('should work with multiple custom delimiters', () => {
+            expect(calc.add("//[*][%]\n1*2%3")).toEqual(6);
+        });
     })
 });
